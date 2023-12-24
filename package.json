@@ -1,0 +1,17 @@
+{
+  "name": "aots-2023",
+  "private": true,
+  "author": "erhant",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "bunx tsc --noEmit"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "type-testing": "^0.2.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
