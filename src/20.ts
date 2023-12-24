@@ -1,4 +1,3 @@
-// prettier-ignore
 type Letters = {
   A: [
     '█▀█ ',
@@ -92,12 +91,12 @@ type AllLetters = Letters & {
   [K in keyof Letters as K extends string ? Lowercase<K> : never]: Letters[K];
 };
 
-// prettier-ignore
+
 type Append<T extends [string, string, string], N extends [string, string, string]> =
   [`${T[0]}${N[0]}`, `${T[1]}${N[1]}`, `${T[2]}${N[2]}`]
 
-// prettier-ignore
-type ToAsciiArt<
+
+export type ToAsciiArt<
 	S extends string,
 	Acc extends string[] = [],
 	Cur extends [string, string, string] = ["", "", ""],

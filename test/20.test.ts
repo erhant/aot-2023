@@ -1,4 +1,6 @@
+import { describe, it } from "bun:test";
 import { Equal, Expect } from "type-testing";
+import { ToAsciiArt } from "~/20";
 
 type test_0_actual = ToAsciiArt<"   * : * Merry * : *   \n  Christmas  ">;
 //   ^?

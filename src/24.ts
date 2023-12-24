@@ -6,8 +6,7 @@ type DELICIOUS_COOKIES = "🍪";
 type MazeMatrix = MazeItem[][];
 type Directions = "up" | "down" | "left" | "right";
 
-// prettier-ignore
-type Move<T extends MazeMatrix, D extends Directions, I extends FullIndexType = FindSanta2D<T>> = 
+export type Move<T extends MazeMatrix, D extends Directions, I extends FullIndexType = FindSanta2D<T>> = 
 	I[D][0] extends never ? MakeCookies2D<T> : // row is out-of-bounds, santa exits!
 	I[D][1] extends never ? MakeCookies2D<T> : // col is out-of-bounds, santa exits!
 	T[I[D][0]][I[D][1]] extends Tree ? T : // there is a tree in the way
@@ -46,7 +45,6 @@ type MakeCookies1D<
 
 // Find the index of the first empty cell from bottom at P'th column.
 // Returns `never` if there is none.
-// prettier-ignore
 type FindSanta2D<T extends any[][], Acc extends 0[] = [], Idx extends Omit<IndexType, 'l' | 'r'> = {u: never, c: 0, d: 1, max: T['length']}> =
 	// start search from last row
 	T extends [infer Row extends any[], ...infer Rest extends any[][]]
@@ -62,7 +60,6 @@ type FindSanta2D<T extends any[][], Acc extends 0[] = [], Idx extends Omit<Index
 
 // Find the index of the first empty cell from bottom at P'th column.
 // Returns `never` if there is none.
-// prettier-ignore
 type FindSanta1D<T extends any[], Acc extends 0[] = [], Idx extends Omit<IndexType, 'u' | 'd'> = {l: never, c: 0, r: 1, max: T['length']}> =
 	T extends [infer First, ...infer Rest]
 		? First extends Santa
@@ -89,7 +86,6 @@ type ToIndex<
   down: [RowIdx["d"] extends RowIdx["max"] ? never : RowIdx["d"], ColIdx["c"]];
 };
 
-// prettier-ignore
 type Replace2D<T extends any[][], IR extends number, IC extends number, V extends any, Acc extends any[][] = []> = 
   T extends [infer First extends any[], ...infer Rest extends any[][]]
 	? Acc["length"] extends IR
@@ -97,15 +93,9 @@ type Replace2D<T extends any[][], IR extends number, IC extends number, V extend
 		: Replace2D<Rest, IR, IC, V, [...Acc, First]>
 	: T;
 
-// prettier-ignore
 type Replace1D<T extends any[], IC extends number, V extends any, Acc extends any[] = []> = 
   T extends [infer First, ...infer Rest]
 	? Acc["length"] extends IC
 		? [...Acc, V, ...Rest]
 		: Replace1D<Rest, IC, V, [...Acc, First]>
 	: T;
-
-type x = Move<
-  [["🎄", "  ", "🎄"], ["🎄", "  ", "  "], ["🎅", "  ", "🎄"]],
-  "up"
->;
