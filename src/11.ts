@@ -8,7 +8,7 @@ type DeepReadonlyArray<
 
 type DeepReadonly<T> = 
   // check if T is an object
-  T extends Record<string, unknown>
+  T extends Record<any, unknown>
   // recurse into each object key
   ? {readonly [K in keyof T]: DeepReadonly<T[K]>}
   // check if T is an array

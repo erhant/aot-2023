@@ -2,7 +2,7 @@ import { Equal, Expect } from "type-testing";
 import { NewGame, TicTacToe } from "~/21";
 
 type test_move1_actual = TicTacToe<NewGame, "top-center">;
-//   ^?
+// prettier-ignore
 type test_move1_expected = {
   board: [["  ", "❌", "  "], ["  ", "  ", "  "], ["  ", "  ", "  "]];
   state: "⭕";
@@ -10,7 +10,7 @@ type test_move1_expected = {
 type test_move1 = Expect<Equal<test_move1_actual, test_move1_expected>>;
 
 type test_move2_actual = TicTacToe<test_move1_actual, "top-left">;
-//   ^?
+// prettier-ignore
 type test_move2_expected = {
   board: [["⭕", "❌", "  "], ["  ", "  ", "  "], ["  ", "  ", "  "]];
   state: "❌";
@@ -18,7 +18,7 @@ type test_move2_expected = {
 type test_move2 = Expect<Equal<test_move2_actual, test_move2_expected>>;
 
 type test_move3_actual = TicTacToe<test_move2_actual, "middle-center">;
-//   ^?
+// prettier-ignore
 type test_move3_expected = {
   board: [["⭕", "❌", "  "], ["  ", "❌", "  "], ["  ", "  ", "  "]];
   state: "⭕";
@@ -26,7 +26,7 @@ type test_move3_expected = {
 type test_move3 = Expect<Equal<test_move3_actual, test_move3_expected>>;
 
 type test_move4_actual = TicTacToe<test_move3_actual, "bottom-left">;
-//   ^?
+// prettier-ignore
 type test_move4_expected = {
   board: [["⭕", "❌", "  "], ["  ", "❌", "  "], ["⭕", "  ", "  "]];
   state: "❌";
@@ -34,7 +34,7 @@ type test_move4_expected = {
 type test_move4 = Expect<Equal<test_move4_actual, test_move4_expected>>;
 
 type test_x_win_actual = TicTacToe<test_move4_actual, "bottom-center">;
-//   ^?
+// prettier-ignore
 type test_x_win_expected = {
   board: [["⭕", "❌", "  "], ["  ", "❌", "  "], ["⭕", "❌", "  "]];
   state: "❌ Won";
@@ -42,7 +42,7 @@ type test_x_win_expected = {
 type test_x_win = Expect<Equal<test_x_win_actual, test_x_win_expected>>;
 
 type type_move5_actual = TicTacToe<test_move4_actual, "bottom-right">;
-//   ^?
+// prettier-ignore
 type type_move5_expected = {
   board: [["⭕", "❌", "  "], ["  ", "❌", "  "], ["⭕", "  ", "❌"]];
   state: "⭕";
@@ -50,15 +50,16 @@ type type_move5_expected = {
 type test_move5 = Expect<Equal<type_move5_actual, type_move5_expected>>;
 
 type test_o_win_actual = TicTacToe<type_move5_actual, "middle-left">;
-//   ^?
+// prettier-ignore
 type test_o_win_expected = {
   board: [["⭕", "❌", "  "], ["⭕", "❌", "  "], ["⭕", "  ", "❌"]];
   state: "⭕ Won";
 };
+type test_o_win = Expect<Equal<test_o_win_actual, test_o_win_expected>>;
 
 // invalid move don't change the board and state
 type test_invalid_actual = TicTacToe<test_move1_actual, "top-center">;
-//   ^?
+// prettier-ignore
 type test_invalid_expected = {
   board: [["  ", "❌", "  "], ["  ", "  ", "  "], ["  ", "  ", "  "]];
   state: "⭕";
@@ -70,7 +71,7 @@ type test_before_draw = {
   state: "⭕";
 };
 type test_draw_actual = TicTacToe<test_before_draw, "bottom-right">;
-//   ^?
+// prettier-ignore
 type test_draw_expected = {
   board: [["⭕", "❌", "⭕"], ["⭕", "❌", "❌"], ["❌", "⭕", "⭕"]];
   state: "Draw";

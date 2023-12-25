@@ -5,7 +5,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "check": "bunx tsc --noEmit && echo \"All solutions correct.\""
+    "check": "bunx tsc --noEmit && echo \"All solutions are correct.\""
   },
   "devDependencies": {
     "bun-types": "latest",
