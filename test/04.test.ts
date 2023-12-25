@@ -1,13 +1,13 @@
-import { Expect, Equal } from 'type-testing';
-import { Address, PresentDeliveryList } from '~/4';
+import { Expect, Equal } from "type-testing";
+import { Address, PresentDeliveryList } from "~/04";
 
 type MixedBehaviorList = {
-  john: { behavior: 'good' };
-  jimmy: { behavior: 'bad' };
-  sara: { behavior: 'good' };
-  suzy: { behavior: 'good' };
-  chris: { behavior: 'good' };
-  penny: { behavior: 'bad' };
+  john: { behavior: "good" };
+  jimmy: { behavior: "bad" };
+  sara: { behavior: "good" };
+  suzy: { behavior: "good" };
+  chris: { behavior: "good" };
+  penny: { behavior: "bad" };
 };
 type test_MixedBehaviorTest_actual = PresentDeliveryList<MixedBehaviorList>;
 //   ^?
@@ -19,13 +19,11 @@ type test_MixedBehaviorTest_expected = {
   chris: Address;
   penny: Address;
 };
-type test_MixedBehaviorTest = Expect<
-  Equal<test_MixedBehaviorTest_actual, test_MixedBehaviorTest_expected>
->;
+type test_MixedBehaviorTest = Expect<Equal<test_MixedBehaviorTest_actual, test_MixedBehaviorTest_expected>>;
 
 type Unrelated = {
-  hello: { hello: 'hello' };
-  world: { world: 'world' };
+  hello: { hello: "hello" };
+  world: { world: "world" };
 };
 type test_Unrelated_actual = PresentDeliveryList<Unrelated>;
 //   ^?

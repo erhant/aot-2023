@@ -1,47 +1,47 @@
-import { Expect, Equal } from 'type-testing';
-import { SantaListProtector } from '~/11';
+import { Expect, Equal } from "type-testing";
+import { SantaListProtector } from "~/11";
 
 type test_0_actual = SantaListProtector<{
   //   ^?
-  hacksore: () => 'naughty';
+  hacksore: () => "naughty";
   trash: string;
   elliot: {
     penny: boolean;
     candace: {
       address: {
         street: {
-          name: 'candy cane way';
+          name: "candy cane way";
           num: number;
         };
-        k: 'hello';
+        k: "hello";
       };
       children: [
-        'harry',
+        "harry",
         {
-          saying: ['hey'];
-        },
+          saying: ["hey"];
+        }
       ];
     };
   };
 }>;
 type test_0_expected = {
-  readonly hacksore: () => 'naughty';
+  readonly hacksore: () => "naughty";
   readonly trash: string;
   readonly elliot: {
     readonly penny: boolean;
     readonly candace: {
       readonly address: {
         readonly street: {
-          readonly name: 'candy cane way';
+          readonly name: "candy cane way";
           readonly num: number;
         };
-        readonly k: 'hello';
+        readonly k: "hello";
       };
       readonly children: readonly [
-        'harry',
+        "harry",
         {
-          readonly saying: readonly ['hey'];
-        },
+          readonly saying: readonly ["hey"];
+        }
       ];
     };
   };
@@ -50,14 +50,14 @@ type test_0 = Expect<Equal<test_0_expected, test_0_actual>>;
 
 type test_1_actual = SantaListProtector<{
   //   ^?
-  theo: () => 'naughty';
+  theo: () => "naughty";
   prime: string;
   netflix: {
     isChill: boolean;
   };
 }>;
 type test_1_expected = {
-  readonly theo: () => 'naughty';
+  readonly theo: () => "naughty";
   readonly prime: string;
   readonly netflix: {
     readonly isChill: boolean;

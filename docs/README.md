@@ -1,0 +1,126 @@
+# Advent of TypeScript 2023
+
+## [Day 1. Christmas Cookies](https://typehero.dev/challenge/day-1)
+
+We simply have to provide a [Union](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#unions) type, as follows:
+
+```ts
+type SantasFavoriteCookies = "ginger-bread" | "chocolate-chip";
+```
+
+## [Day 2. Cookie Inventory](https://typehero.dev/challenge/day-2)
+
+We are required to return the keys in the given object, thankfully [`keyof`](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html#the-keyof-type-operator) operator does just that!
+
+```ts
+type CookieSurveyInput<T> = keyof T;
+```
+
+## [Day 3. Gift Wrapper](https://typehero.dev/challenge/day-3)
+
+We have 3 parameters, and in the given order they must be assigned as values to keys `present`, `from` and `to`. Well, working with objects in the type-world is very similar to JS, as you can see:
+
+```ts
+type GiftWrapper<P, F, T> = {
+  present: P;
+  from: F;
+  to: T;
+};
+```
+
+## [Day 4. Delivery Addresses](https://typehero.dev/challenge/day-4)
+
+Here, we need to change the values of a given object. We can access the keys of an object via `K in keyof T`; remember `keyof T` returns a union and `in` tells us that we want all the values in the union. Our solution is therefore:
+
+```ts
+type Address = { address: string; city: string };
+type PresentDeliveryList<T extends Record<PropertyKey, any>> = { [K in keyof T]: Address };
+```
+
+> [!TIP]
+>
+> We don't really need `T extends Record<PropertyKey, any>` here for the tests, but that provides a bit more type-safety where unsuitable parameters to `PresentDeliveryList` would cause an error.
+
+## [Day 5. Santa's List](https://typehero.dev/challenge/day-5)
+
+Here we are asked to concatenate two arrays. We must remember that spread operator `...array` works in type-world too! So, if we have two arrays `A, B` we can spread them into a single array `[...A, ...B]` and the result will be as if we had called `A.concat(B)`.
+
+```ts
+type SantasList<A extends readonly any[], B extends readonly any[]> = [...A, ...B];
+```
+
+## [Day 6. Filtering the Children I](https://typehero.dev/challenge/day-6)
+
+We are asked to **exclude** an item from a union. TypeScript has a built-in called `Exclude` just for that!
+
+```ts
+type FilterChildrenBy<T, E> = Exclude<T, E>;
+```
+
+## [Day 7. Filtering the Children II](https://typehero.dev/challenge/day-7)
+
+We have worked with changing the value of a record before in day 4; now, we are asked to change the keys! This is a bit more work, but we will make use of something called [key remapping](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#key-remapping-via-as) which allows one to re-map keys in a mapped type.
+
+```ts
+type GoodProperty<K extends PropertyKey> = K extends string ? `good_${K}` : never;
+
+type AppendGood<T extends Record<string, any>> = { [K in keyof T as GoodProperty<K>]: T[K] };
+```
+
+> [!TIP]
+>
+> One thing to notice here:
+>
+> ```ts
+> type AppendGood<T extends Record<string, any>> = { [K in keyof T as `good_$`]: T[K] };
+> ```
+>
+> The code above will not work because a string literal accepts things that can be stringified, however a property (via `keyof`) can return a `Symbol` which wouldn't be compatible with our string literal there.
+
+> [!NOTE]
+>
+> I didn't know about this until this challenge!
+
+## [Day 8. Filtering the Children III](https://typehero.dev/challenge/day-8)
+
+In this challenge, we will filter out some of the keys based on how they fit a given string. We can use `Exclude` for this as well! If you hover over the built-in `Exclude` you will see that it is written as:
+
+```ts
+type Exclude<T, U> = T extends U ? never : T;
+```
+
+So if a given string `T` extends `U`, it will return `never`. If a mapped-key is `never` it is not included in the resulting object. With this in mind, our solution is:
+
+```ts
+type RemoveNaughtyChildren<T> = { [K in Exclude<keyof T, `naughty_${string}`>]: T[K] };
+```
+
+> [!TIP]
+>
+> Notice how we access the respective values of each key via `T[K]`
+
+## [Day 9. Is Santa Dyslexic?](https://typehero.dev/challenge/day-9)
+
+We are asked to reverse a string, at type-level! Although this may sound scary at first, it is not so scary when you have knowledge of the `infer` keyword. Inferring is done within a conditional type, you can learn more about it [here](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types).
+
+We can ask if a type extends some other type, and infer parts of it based on whether that condition is true or not! In this challenge, we can ask if our type extends a string with two inferred parts: `T extends `${infer F}${infer S}`. It just turns out that `F`will be the first character here, and`S` will be the rest of the string.
+
+So, we can extract `F` and `S` like that, and put `F` at the end of a new string, prefixed by `Reverse<S>` yet again to reverse the remaining string. In the end, there will be no characters left, and at that point we will return the string itself.
+
+```ts
+type Reverse<T extends string> = T extends `${infer F}${infer S}` ? `${Reverse<S>}${F}` : T;
+```
+
+> [!TIP]
+>
+> When `T = 'a'`, that condition will result in `F = 'a'` and `S = ''`.
+
+## [Day 10. Street Suffix](https://typehero.dev/challenge/day-10)
+
+In this challenge, we just need to make a suffix check, a job suited for the beloved condition-type together with a string literal.
+
+```ts
+type StreetSuffixTester<T extends string, S extends string> = T extends `${string}${S}` ? true : false;
+```
+
+The code is pretty self-explanatory in this one.

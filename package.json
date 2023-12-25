@@ -5,7 +5,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "check": "bunx tsc --noEmit"
+    "check": "bunx tsc --noEmit && echo \"All solutions correct.\""
   },
   "devDependencies": {
     "bun-types": "latest",
@@ -13,5 +13,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "prettier": {
+    "printWidth": 120
   }
 }
