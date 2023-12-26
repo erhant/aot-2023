@@ -3,8 +3,8 @@
 Within this repo I have my solutions to AOTS 2023, along with their explanations & tests. You can find detailed walkthroughs for each day's challenge below:
 
 - **Days 1 to 10**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-i-1fh1) | [Markdown](./docs/01-10.md)
-- **Days 11 to 20**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-ii-38ao) | [Markdown](<(./docs/11-20.md)>)
-- **Days 21 to 25**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-iii-54l) | [Markdown](<(./docs/21-25.md)>)
+- **Days 11 to 20**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-ii-38ao) | [Markdown](./docs/11-20.md)
+- **Days 21 to 25**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-iii-54l) | [Markdown](./docs/21-25.md)
 
 ## Usage
 
