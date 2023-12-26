@@ -52,8 +52,8 @@ type HasEmpty1D<T extends any[]> =
 // Returns `never` if there is none.
 type FindIndex2D<T extends Connect4Board, P extends number, Acc extends 0[] = []> =
 	// start search from last row
-	T extends [...infer Rest extends any[][], infer Row extends any[]]
-		? Row[P] extends "  "
+	T extends [...infer Rest extends any[][], infer Last extends any[]]
+		? Last[P] extends "  "
 			? Acc["length"]
 			: FindIndex2D<Rest, P, [0, ...Acc]>
 		: never;

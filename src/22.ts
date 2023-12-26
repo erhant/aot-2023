@@ -28,25 +28,21 @@ type Reindeer =
   | Rudolph;
 
 // uniqueness check
-type CheckAnyExtends<T, Arr extends any[]> = Arr extends [
-  infer First,
-  ...infer Rest
-]
+// prettier-ignore
+type CheckAnyExtends<T, Arr extends any[]> = 
+  Arr extends [infer First, ...infer Rest]
   ? T extends First
     ? true
     : CheckAnyExtends<T, Rest>
   : false;
-type Unique<T extends any[], Result extends any[] = []> = T extends [
-  infer Current,
-  ...infer Rest
-]
-  ? CheckAnyExtends<Current, Result> extends true
+type Unique<T extends any[], Result extends any[] = []> = 
+  T extends [infer First,...infer Rest]
+  ? CheckAnyExtends<First, Result> extends true
     ? Unique<Rest, Result>
-    : Unique<Rest, [...Result, Current]>
+    : Unique<Rest, [...Result, First]>
   : Result;
-type IsUnique<T extends any[]> = T["length"] extends Unique<T>["length"]
-  ? true
-  : false;
+type IsUnique<T extends any[]> = 
+  T["length"] extends Unique<T>["length"] ? true : false;
 
 
 export type Validate<T extends Reindeer[][][]> = 
@@ -81,15 +77,3 @@ export type Validate<T extends Reindeer[][][]> =
 	IsUnique<[...T[6][1], ...T[7][1], ...T[8][1]]> extends false ? false :
 	IsUnique<[...T[6][2], ...T[7][2], ...T[8][2]]> extends false ? false
 	: true;
-
-type TT = [
-  [["💨", "💃", "🦌"], ["☄️", "❤️", "🌩️"], ["🌟", "⚡", "🔴"]],
-  [["🌟", "⚡", "🔴"], ["💨", "💃", "🦌"], ["☄️", "❤️", "🌩️"]],
-  [["☄️", "❤️", "🌩️"], ["🌟", "⚡", "🔴"], ["💨", "💃", "🦌"]],
-  [["🦌", "💨", "💃"], ["⚡", "☄️", "❤️"], ["🔴", "🌩️", "🌟"]],
-  [["🌩️", "🔴", "🌟"], ["🦌", "💨", "💃"], ["⚡", "☄️", "❤️"]],
-  [["⚡", "☄️", "❤️"], ["🌩️", "🔴", "🌟"], ["🦌", "💨", "💃"]],
-  [["💃", "🦌", "💨"], ["❤️", "🌟", "☄️"], ["🌩️", "🔴", "⚡"]],
-  [["🔴", "🌩️", "⚡"], ["💃", "🦌", "💨"], ["❤️", "🌟", "☄️"]],
-  [["❤️", "🌟", "☄️"], ["🔴", "🌩️", "⚡"], ["💃", "🦌", "💨"]]
-][0];

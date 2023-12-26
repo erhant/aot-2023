@@ -6,9 +6,9 @@ type TicTacToeCell = TicTacToeChip | TicTacToeEmptyCell;
 type TicTacToeYPositions = "top" | "middle" | "bottom";
 type TicTacToeXPositions = "left" | "center" | "right";
 type TicTacToePositions = `${TicTacToeYPositions}-${TicTacToeXPositions}`;
-type TicTactToeBoard = TicTacToeCell[][];
+type TicTacToeBoard = TicTacToeCell[][];
 type TicTacToeGame = {
-  board: TicTactToeBoard;
+  board: TicTacToeBoard;
   state: TicTacToeState;
   ctr?: 0[];
 };
@@ -33,7 +33,7 @@ type ToIndex = {
   right: 2;
 };
 
-type IsWinning<B extends TicTactToeBoard, C extends TicTacToeChip, CCC = [C, C, C]> = 
+type IsWinning<B extends TicTacToeBoard, C extends TicTacToeChip, CCC = [C, C, C]> = 
   [B[0][0], B[0][1], B[0][2]] extends CCC ? true : // top row
   [B[1][0], B[1][1], B[1][2]] extends CCC ? true : // middle row
   [B[2][0], B[2][1], B[2][2]] extends CCC ? true : // bottom row
@@ -52,7 +52,7 @@ type IsDraw<B extends any[]> =
   : true
 
 // check if a Board is winning, otherwise return next state
-type NextState<B extends TicTactToeBoard, C extends TicTacToeChip> =
+type NextState<B extends TicTacToeBoard, C extends TicTacToeChip> =
   IsWinning<B, C> extends true 
   ? {
     board: B,
@@ -78,12 +78,12 @@ export type TicTacToe<T extends TicTacToeGame, P extends TicTacToePositions> =
     : never // cant play a non-chip state
   : T; // invalid play keeps the board same
 
-type Retrieve<T extends TicTactToeBoard, P extends TicTacToePositions> =
+type Retrieve<T extends TicTacToeBoard, P extends TicTacToePositions> =
   P extends `${infer L extends TicTacToeYPositions}-${infer R extends TicTacToeXPositions}` 
   ? T[ToIndex[L]][ToIndex[R]]
   : never;
 
-type Put<T extends TicTactToeBoard, P extends TicTacToePositions, V extends TicTacToeCell> =
+type Put<T extends TicTacToeBoard, P extends TicTacToePositions, V extends TicTacToeCell> =
   // top
   P extends 'top-left' ?      [[V, T[0][1], T[0][2]], T[1], T[2]] : 
   P extends 'top-center' ?    [[T[0][0], V, T[0][2]], T[1], T[2]] : 

@@ -18,7 +18,7 @@ bun check
 
 ## Explanations
 
-You can find detailed walkthroughs for each day below:
+You can find detailed walkthroughs for each day's challenge below:
 
 - [Days 1 to 10](./docs/01-10.md)
 - [Days 11 to 20](./docs/11-20.md)
@@ -49,5 +49,5 @@ You can find detailed walkthroughs for each day below:
 - [x] [Day 21. Tic-Tac-Toe](https://typehero.dev/challenge/day-21)
 - [x] [Day 22. Sudoku](https://typehero.dev/challenge/day-22)
 - [x] [Day 23. Connect4](https://typehero.dev/challenge/day-23)
-- [x] [Day 24. Santa in Maze](https://typehero.dev/challenge/day-24)
+- [x] [Day 24. Santa in Forest](https://typehero.dev/challenge/day-24)
 - [x] [Day 25. Merry Christmas!](https://typehero.dev/challenge/day-25)
