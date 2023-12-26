@@ -1,6 +1,10 @@
 # [Advent of TypeScript 2023](https://typehero.dev/aot-2023)
 
-Within this repo I have my solutions to AOTS 2023, along with their explanations & tests.
+Within this repo I have my solutions to AOTS 2023, along with their explanations & tests. You can find detailed walkthroughs for each day's challenge below:
+
+- **Days 1 to 10**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-i-1fh1) | [Markdown](./docs/01-10.md)
+- **Days 11 to 20**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-ii-38ao) | [Markdown](<(./docs/11-20.md)>)
+- **Days 21 to 25**: [Online](https://dev.to/erhant/advent-of-typescript-2023-part-iii-54l) | [Markdown](<(./docs/21-25.md)>)
 
 ## Usage
 
@@ -15,14 +19,6 @@ Then, you can check the solutions with:
 ```sh
 bun check
 ```
-
-## Explanations
-
-You can find detailed walkthroughs for each day's challenge below:
-
-- [Days 1 to 10](./docs/01-10.md)
-- [Days 11 to 20](./docs/11-20.md)
-- [Days 21 to 25](./docs/21-25.md)
 
 ## Challenges
 
